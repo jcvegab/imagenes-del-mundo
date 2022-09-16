@@ -70,7 +70,7 @@ onMounted(() => setTheme(lightTheme.value));
   align-items: center;
   justify-content: center;
 
-  border-bottom: 1px solid var(--text-color-primary);
+  box-shadow: 0px 1rem 3rem 1rem rgba(0, 0, 0, 0.1);
 }
 
 header {
@@ -83,6 +83,12 @@ header {
   padding: 1rem;
   height: 100%;
   width: 100%;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .header-app {

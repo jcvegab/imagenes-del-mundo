@@ -3,12 +3,16 @@
 :root.light {
   --text-color-primary: #1d1d1d;
 
+  --link-color-primary: #0065ff;
+
   --bg-color-primary: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --text-color-primary: #ffffff;
+
+    --link-color-primary: #ffffff;
 
     --bg-color-primary: #1d1d1d;
   }

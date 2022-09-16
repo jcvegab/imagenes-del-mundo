@@ -26,8 +26,6 @@ div {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  border-top: 1px solid var(--text-color-primary);
 }
 
 footer {
@@ -40,6 +38,10 @@ footer {
   padding: 1rem;
   width: 100%;
   height: 4rem;
+}
+
+footer > span {
+  font-weight: 600;
 }
 
 @media (min-width: 1024px) {

@@ -29,4 +29,10 @@ nav {
   font-size: 1rem;
   text-align: center;
 }
+
+a {
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--link-color-primary);
+}
 </style>
