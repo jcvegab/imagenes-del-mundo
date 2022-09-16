@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
-
-import HeaderApp from "./components/HeaderApp.vue";
-import FooterApp from "./components/FooterApp.vue";
+import HeaderApp from "@/components/HeaderApp.vue";
+import ViewTemplate from "./templates/ViewTemplate.vue";
 </script>
 
 <template>
-  <HeaderApp />
-  <RouterView />
-  <FooterApp />
+  <HeaderApp title="Imágenes del mundo" />
+  <ViewTemplate />
 </template>
