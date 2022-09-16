@@ -40,17 +40,39 @@ onMounted(() => setTheme(lightTheme.value));
 </script>
 
 <template>
-  <header>
-    <div class="header-app">
-      <img alt="Imagenes del mundo Logo" class="logo" src="@/assets/logo.svg" />
-      <h1>{{ title }}</h1>
-    </div>
-    <InputSwitch @click="toggleTheme" v-model="lightTheme" />
-    <NavigationItems :items="PUBLIC_ROUTES" />
-  </header>
+  <div class="header-container">
+    <header>
+      <div class="header-app">
+        <img
+          alt="Imagenes del mundo Logo"
+          class="logo"
+          src="@/assets/logo.svg"
+        />
+        <h1>{{ title }}</h1>
+      </div>
+      <InputSwitch
+        class="theme-switch"
+        @click="toggleTheme"
+        v-model="lightTheme"
+      />
+      <NavigationItems :items="PUBLIC_ROUTES" />
+    </header>
+  </div>
 </template>
 
 <style scoped>
+.header-container {
+  --header-gap: 2rem;
+
+  margin-bottom: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-bottom: 1px solid var(--text-color-primary);
+}
+
 header {
   display: flex;
   align-items: center;
@@ -58,11 +80,9 @@ header {
 
   line-height: 1.5;
 
-  margin-bottom: 1rem;
   padding: 1rem;
-  max-width: 1080px;
-
-  border-bottom: 1px solid var(--text-color-primary);
+  height: 100%;
+  width: 100%;
 }
 
 .header-app {
@@ -70,7 +90,7 @@ header {
 
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: var(--header-gap);
 }
 
 .logo {
@@ -78,6 +98,13 @@ header {
   height: 100%;
 }
 
+.theme-switch {
+  margin: 0 var(--header-gap) 0 auto;
+}
+
 @media (min-width: 1024px) {
+  header {
+    max-width: 1080px;
+  }
 }
 </style>
