@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+import { RouterLink } from "vue-router";
 
 import InputSwitch from "primevue/inputswitch";
 import NavigationItems from "./NavigationItems.vue";
 
 import { THEME_LS } from "@/constants/theme";
+import { HOME_PATH } from "@/router/constants";
 import { PUBLIC_ROUTES } from "@/router/public-routes";
 
 export type Theme = "light" | "dark";
@@ -43,11 +45,13 @@ onMounted(() => setTheme(lightTheme.value));
   <div class="header-container">
     <header>
       <div class="header-app">
-        <img
-          alt="Imagenes del mundo Logo"
-          class="logo"
-          src="@/assets/logo.svg"
-        />
+        <RouterLink class="logo-link" :to="HOME_PATH">
+          <img
+            alt="Imagenes del mundo Logo"
+            class="logo"
+            src="@/assets/logo.svg"
+          />
+        </RouterLink>
         <h1>{{ title }}</h1>
       </div>
       <InputSwitch
@@ -97,6 +101,10 @@ h1 {
   display: flex;
   align-items: center;
   gap: var(--header-gap);
+}
+
+.logo-link {
+  height: inherit;
 }
 
 .logo {

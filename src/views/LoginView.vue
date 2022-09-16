@@ -30,7 +30,7 @@ const submitForm = async () => {
 
 <template>
   <aside>
-    <h1>Ingresa</h1>
+    <h2>Ingresa</h2>
     <form id="login" class="login-form" @submit.prevent="submitForm">
       <InputText
         v-model="formData.username"
@@ -71,10 +71,26 @@ const submitForm = async () => {
 </template>
 
 <style scoped>
-.login-form {
+aside {
+  height: 100%;
+  width: 100%;
+
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+h2 {
+  margin: 0;
+
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.login-form {
+  display: contents;
 
   max-width: 700px;
 }
