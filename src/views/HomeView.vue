@@ -1,48 +1,52 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, watch } from "vue";
+
+import { useDebouncedRef } from "@/composable/useDebouncedRef";
+
+import { GCSE_IMAGES_API_URL } from "@/constants/urls";
 
 import InputText from "primevue/inputtext";
-import Button from "primevue/button";
 import Image from "primevue/image";
 
-const search = ref("");
-
-const handleSearch = () => {
-  console.log(search.value);
+type ImageItem = {
+  id: string;
+  url: string;
+  alt: string;
 };
 
-const IMAGE_URL =
-  "https://www.primefaces.org/primevue/demo/images/galleria/galleria11.jpg";
+const search = useDebouncedRef("", 600);
+const images = ref<ImageItem[]>([]);
+
+const formatGcseData = (data: any): ImageItem[] => {
+  return data.items.map((img: any) => ({
+    id: img.image.thumbnailLink,
+    alt: img.title,
+    url: img.link,
+  }));
+};
+
+const getImages = async (query: string) => {
+  const data = (await fetch(`${GCSE_IMAGES_API_URL}&q=${query}`).then((res) =>
+    res.json()
+  )) as any;
+  const formatted = formatGcseData(data);
+  images.value = formatted;
+};
+
+onMounted(() => {
+  search.value.length ? getImages(search.value) : getImages("Startups");
+});
+
+watch(() => search.value, getImages);
 </script>
 
 <template>
   <main>
-    <div class="search p-inputgroup">
-      <InputText v-model="search" placeholder="Buscar" />
-      <Button
-        @click="handleSearch"
-        icon="pi pi-search"
-        class="p-button-warning"
-      />
-    </div>
+    <InputText class="search" v-model="search" placeholder="Buscar" />
     <div class="images-container">
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
-      <Image class="image-item" :src="IMAGE_URL" alt="Image Text" preview />
+      <template v-for="image in images" :key="image.id">
+        <Image class="image-item" :src="image.url" :alt="image.alt" preview />
+      </template>
     </div>
   </main>
 </template>
@@ -56,6 +60,7 @@ main {
 }
 
 .search {
+  display: block;
   width: 80%;
 
   margin: 0 auto;
