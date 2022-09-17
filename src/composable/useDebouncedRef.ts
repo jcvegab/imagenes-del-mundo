@@ -28,7 +28,7 @@ export const useDebouncedRef = <A extends unknown>(
       return state.value;
     },
     set: debounce(
-      (value) => {
+      (value: any) => {
         state.value = value;
         trigger();
       },

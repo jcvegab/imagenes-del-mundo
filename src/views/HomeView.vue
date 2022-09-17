@@ -5,14 +5,10 @@ import { useDebouncedRef } from "@/composable/useDebouncedRef";
 
 import { GCSE_IMAGES_API_URL } from "@/constants/urls";
 
-import InputText from "primevue/inputtext";
-import Image from "primevue/image";
+import type { ImageItem } from "@/types/images";
 
-type ImageItem = {
-  id: string;
-  url: string;
-  alt: string;
-};
+import Image from "primevue/image";
+import InputText from "primevue/inputtext";
 
 const search = useDebouncedRef("", 600);
 const images = ref<ImageItem[]>([]);
@@ -28,7 +24,7 @@ const formatGcseData = (data: any): ImageItem[] => {
 const getImages = async (query: string) => {
   const data = (await fetch(`${GCSE_IMAGES_API_URL}&q=${query}`).then((res) =>
     res.json()
-  )) as any;
+  )) as unknown;
   const formatted = formatGcseData(data);
   images.value = formatted;
 };
@@ -44,9 +40,14 @@ watch(() => search.value, getImages);
   <main>
     <InputText class="search" v-model="search" placeholder="Buscar" />
     <div class="images-container">
-      <template v-for="image in images" :key="image.id">
-        <Image class="image-item" :src="image.url" :alt="image.alt" preview />
-      </template>
+      <Image
+        v-for="image in images"
+        :key="image.id"
+        :src="image.url"
+        :alt="image.alt"
+        class="image-item"
+        preview
+      />
     </div>
   </main>
 </template>
