@@ -1,44 +1,44 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { RouterLink } from "vue-router";
+import { onMounted, ref } from 'vue'
+import { RouterLink } from 'vue-router'
 
-import InputSwitch from "primevue/inputswitch";
-import NavigationItems from "./NavigationItems.vue";
+import InputSwitch from 'primevue/inputswitch'
+import NavigationItems from './NavigationItems.vue'
 
-import { THEME_LS } from "@/constants/theme";
-import { HOME_PATH } from "@/router/constants";
-import { PUBLIC_ROUTES } from "@/router/public-routes";
+import { THEME_LS } from '@/constants/theme'
+import { HOME_PATH } from '@/router/constants'
+import { PUBLIC_ROUTES } from '@/router/public-routes'
 
-export type Theme = "light" | "dark";
+export type Theme = 'light' | 'dark'
 
 defineProps<{
-  title: string;
-}>();
+  title: string
+}>()
 
 const isLightTheme = () => {
-  const currentTheme = localStorage.getItem(THEME_LS) as Theme;
-  return currentTheme === "light";
-};
+  const currentTheme = localStorage.getItem(THEME_LS) as Theme
+  return currentTheme === 'light'
+}
 
 const setTheme = (isLight: boolean) => {
-  const theme = isLight ? "light" : "dark";
-  localStorage.setItem(THEME_LS, theme);
-  lightTheme.value = isLight;
-  document.documentElement.className = theme;
-};
+  const theme = isLight ? 'light' : 'dark'
+  localStorage.setItem(THEME_LS, theme)
+  lightTheme.value = isLight
+  document.documentElement.className = theme
+}
 
 const toggleTheme = () => {
-  const activeTheme = localStorage.getItem(THEME_LS);
-  setTheme(activeTheme !== "light");
-};
+  const activeTheme = localStorage.getItem(THEME_LS)
+  setTheme(activeTheme !== 'light')
+}
 
 const isLightSchemePreference = () => {
-  return window.matchMedia("(prefers-color-scheme: light)").matches;
-};
+  return window.matchMedia('(prefers-color-scheme: light)').matches
+}
 
-const lightTheme = ref<boolean>(isLightTheme() || isLightSchemePreference());
+const lightTheme = ref<boolean>(isLightTheme() || isLightSchemePreference())
 
-onMounted(() => setTheme(lightTheme.value));
+onMounted(() => setTheme(lightTheme.value))
 </script>
 
 <template>
@@ -46,19 +46,11 @@ onMounted(() => setTheme(lightTheme.value));
     <header>
       <div class="header-app">
         <RouterLink class="logo-link" :to="HOME_PATH">
-          <img
-            alt="Imagenes del mundo Logo"
-            class="logo"
-            src="@/assets/logo.svg"
-          />
+          <img alt="Imagenes del mundo Logo" class="logo" src="@/assets/logo.svg" />
         </RouterLink>
         <h1>{{ title }}</h1>
       </div>
-      <InputSwitch
-        class="theme-switch"
-        @click="toggleTheme"
-        v-model="lightTheme"
-      />
+      <InputSwitch class="theme-switch" @click="toggleTheme" v-model="lightTheme" />
       <NavigationItems :items="PUBLIC_ROUTES" />
     </header>
   </div>

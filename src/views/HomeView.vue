@@ -1,39 +1,43 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch } from 'vue'
 
-import { useDebouncedRef } from "@/composable/useDebouncedRef";
+import { useDebouncedRef } from '@/composable/useDebouncedRef'
 
-import { GCSE_IMAGES_API_URL } from "@/constants/urls";
+import { GCSE_IMAGES_API_URL } from '@/constants/urls'
 
-import type { ImageItem } from "@/types/images";
+import type { ImageItem } from '@/types/images'
 
-import Image from "primevue/image";
-import InputText from "primevue/inputtext";
+import Image from 'primevue/image'
+import InputText from 'primevue/inputtext'
 
-const search = useDebouncedRef("", 600);
-const images = ref<ImageItem[]>([]);
+const search = useDebouncedRef('', 600)
+const images = ref<ImageItem[]>([])
 
 const formatGcseData = (data: any): ImageItem[] => {
   return data.items.map((img: any) => ({
     id: img.image.thumbnailLink,
     alt: img.title,
     url: img.link,
-  }));
-};
+  }))
+}
 
 const getImages = async (query: string) => {
   const data = (await fetch(`${GCSE_IMAGES_API_URL}&q=${query}`).then((res) =>
-    res.json()
-  )) as unknown;
-  const formatted = formatGcseData(data);
-  images.value = formatted;
-};
+    res.json(),
+  )) as unknown
+  const formatted = formatGcseData(data)
+  images.value = formatted
+}
 
 onMounted(() => {
-  search.value.length ? getImages(search.value) : getImages("Startups");
-});
+  if (search.value.length) {
+    getImages(search.value)
+  } else {
+    getImages('Startups')
+  }
+})
 
-watch(() => search.value, getImages);
+watch(() => search.value, getImages)
 </script>
 
 <template>
