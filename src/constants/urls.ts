@@ -1,3 +1,8 @@
-import { GCSE_API_KEY } from "./variables";
+import { GCSE_API_KEY, GCSE_CX } from './variables'
 
-export const GCSE_IMAGES_API_URL = `https://www.googleapis.com/customsearch/v1?key=${GCSE_API_KEY}&searchType=image`;
+const customSearchUrl = new URL('https://www.googleapis.com/customsearch/v1')
+customSearchUrl.searchParams.append('key', GCSE_API_KEY)
+customSearchUrl.searchParams.append('cx', GCSE_CX)
+customSearchUrl.searchParams.append('searchType', 'image')
+
+export const GCSE_IMAGES_API_URL = customSearchUrl

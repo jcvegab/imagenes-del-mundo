@@ -5,7 +5,7 @@ import { useDebouncedRef } from '@/composable/useDebouncedRef'
 
 import { GCSE_IMAGES_API_URL } from '@/constants/urls'
 
-import type { ImageItem } from '@/types/images'
+import type { GoogleCSResponse, ImageItem } from '@/types/images'
 
 import Image from 'primevue/image'
 import InputText from 'primevue/inputtext'
@@ -13,8 +13,8 @@ import InputText from 'primevue/inputtext'
 const search = useDebouncedRef('', 600)
 const images = ref<ImageItem[]>([])
 
-const formatGcseData = (data: any): ImageItem[] => {
-  return data.items.map((img: any) => ({
+const formatGcseData = (data: GoogleCSResponse): ImageItem[] => {
+  return data.items.map((img) => ({
     id: img.image.thumbnailLink,
     alt: img.title,
     url: img.link,
@@ -22,10 +22,8 @@ const formatGcseData = (data: any): ImageItem[] => {
 }
 
 const getImages = async (query: string) => {
-  const data = (await fetch(`${GCSE_IMAGES_API_URL}&q=${query}`).then((res) =>
-    res.json(),
-  )) as unknown
-  const formatted = formatGcseData(data)
+  const data = await fetch(`${GCSE_IMAGES_API_URL}&q=${query}`).then((res) => res.json())
+  const formatted = formatGcseData(data as GoogleCSResponse)
   images.value = formatted
 }
 
@@ -49,6 +47,7 @@ watch(() => search.value, getImages)
         :key="image.id"
         :src="image.url"
         :alt="image.alt"
+        :aria-label="image.alt"
         class="image-item"
         preview
       />
@@ -75,7 +74,7 @@ main {
   margin-top: 4rem;
 
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 1rem;
 }
 
@@ -83,9 +82,9 @@ main {
   overflow: hidden;
 }
 
-::v-deep(.p-image-preview-container) > img {
+::v-deep(.p-image-preview) > img {
   width: 100%;
-  height: -webkit-fill-available;
+  object-fit: cover;
 }
 
 @media (max-width: 1280px) {
