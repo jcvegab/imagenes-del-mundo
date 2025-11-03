@@ -50,7 +50,7 @@ onMounted(() => setTheme(lightTheme.value))
         </RouterLink>
         <h1>{{ title }}</h1>
       </div>
-      <InputSwitch class="theme-switch" @click="toggleTheme" v-model="lightTheme" />
+      <InputSwitch class="theme-switch" @change="toggleTheme" v-model="lightTheme" />
       <NavigationItems :items="PUBLIC_ROUTES" />
     </header>
   </div>
