@@ -1,1 +1,1 @@
-export const THEME_LS = "app-theme";
+export const THEME_LS = 'app-theme'

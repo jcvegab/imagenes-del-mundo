@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { PUBLIC_ROUTES } from "../router/public-routes";
-import NavigationItems from "./NavigationItems.vue";
+import { PUBLIC_ROUTES } from '../router/public-routes'
+import NavigationItems from './NavigationItems.vue'
 
 defineProps<{
-  title: string;
-}>();
+  title: string
+}>()
 </script>
 
 <template>
   <div>
     <footer>
       <span
-        >{{ title }} | Todos los derechos reservados &copy;
-        {{ new Date().getFullYear() }}.</span
+        >{{ title }} | Todos los derechos reservados &copy; {{ new Date().getFullYear() }}.</span
       >
       <NavigationItems :items="PUBLIC_ROUTES" />
     </footer>

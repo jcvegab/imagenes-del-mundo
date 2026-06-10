@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { capitalize } from "vue";
-import { RouterLink } from "vue-router";
+import { capitalize } from 'vue'
+import { RouterLink } from 'vue-router'
 
-import type { Route } from "@/router/public-routes";
+import type { Route } from '@/router/public-routes'
 
 defineProps<{
-  items: Route[];
-}>();
+  items: Route[]
+}>()
 </script>
 
 <template>
