@@ -49,10 +49,10 @@ describe('LoginView', () => {
     })
 
     const inputs = wrapper.findAllComponents({ name: 'InputText' })
-    await inputs[0].vm.$emit('update:modelValue', 'testuser')
-    await inputs[1].vm.$emit('update:modelValue', 'test@example.com')
-    await inputs[2].vm.$emit('update:modelValue', 'password123')
-    await inputs[3].vm.$emit('update:modelValue', 'password123')
+    await inputs[0]!.vm.$emit('update:modelValue', 'testuser')
+    await inputs[1]!.vm.$emit('update:modelValue', 'test@example.com')
+    await inputs[2]!.vm.$emit('update:modelValue', 'password123')
+    await inputs[3]!.vm.$emit('update:modelValue', 'password123')
 
     await wrapper.find('form').trigger('submit')
 

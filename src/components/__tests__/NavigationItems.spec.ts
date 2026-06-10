@@ -25,9 +25,9 @@ describe('NavigationItems', () => {
 
     const links = wrapper.findAll('a')
     expect(links).toHaveLength(2)
-    expect(links[0].text()).toBe('Home')
-    expect(links[0].attributes('href')).toBe('/')
-    expect(links[1].text()).toBe('About')
-    expect(links[1].attributes('href')).toBe('/about')
+    expect(links[0]!.text()).toBe('Home')
+    expect(links[0]!.attributes('href')).toBe('/')
+    expect(links[1]!.text()).toBe('About')
+    expect(links[1]!.attributes('href')).toBe('/about')
   })
 })

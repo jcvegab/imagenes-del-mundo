@@ -57,8 +57,7 @@ describe('HomeView', () => {
 
     // Clear the first call from onMounted
     vi.mocked(global.fetch).mockClear()
-
-    wrapper.vm.search = 'Nature'
+    ;(wrapper.vm as unknown as { search: string }).search = 'Nature'
 
     // Avanzamos el tiempo para el debounced ref (600ms)
     vi.advanceTimersByTime(600)
