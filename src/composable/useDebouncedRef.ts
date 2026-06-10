@@ -1,42 +1,46 @@
-import { ref, customRef } from "vue";
+import { ref, customRef } from 'vue'
 
-const debounce = <Params extends any[]>(
-  fn: (...args: Params) => any,
+const debounce = <Params extends unknown[]>(
+  fn: (...args: Params) => void,
   delay = 300,
-  immediate = false
+  immediate = false,
 ) => {
-  let timeout: ReturnType<typeof setTimeout>;
+  let timeout: ReturnType<typeof setTimeout> | undefined
+
   return (...args: Params) => {
-    if (immediate && !timeout) fn(...args);
-    clearTimeout(timeout);
+    const callNow = immediate && !timeout
+    clearTimeout(timeout)
 
     timeout = setTimeout(() => {
-      fn(...args);
-    }, delay);
-  };
-};
+      timeout = undefined
+      if (!immediate) fn(...args)
+    }, delay)
 
-export const useDebouncedRef = <A extends unknown>(
-  initialValue: A,
-  delay = 300,
-  immediate = false
-) => {
-  const state = ref(initialValue);
-  const debouncedRef = customRef((track, trigger) => ({
-    get() {
-      track();
-      return state.value;
+    if (callNow) fn(...args)
+  }
+}
+
+export const useDebouncedRef = <A>(initialValue: A, delay = 300, immediate = false) => {
+  const state = ref(initialValue)
+
+  const setDebounced = debounce(
+    (value: A) => {
+      state.value = value
     },
-    set: debounce(
-      (value: any) => {
-        state.value = value;
-        trigger();
-      },
-      delay,
-      immediate
-    ),
-  }));
-  return debouncedRef;
-};
+    delay,
+    immediate,
+  )
 
-export default useDebouncedRef;
+  return customRef<A>((track, trigger) => ({
+    get() {
+      track()
+      return state.value
+    },
+    set(value) {
+      setDebounced(value)
+      trigger()
+    },
+  }))
+}
+
+export default useDebouncedRef
