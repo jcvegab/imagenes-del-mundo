@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import useValidate from '@vuelidate/core'
 import { required, sameAs, minLength } from '@vuelidate/validators'
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
@@ -13,12 +13,12 @@ const formData = reactive({
   confirmPassword: '',
 })
 
-const rules = {
+const rules = computed(() => ({
   username: { required },
   email: { required },
   password: { required, minLength: minLength(6) },
   confirmPassword: { required, sameAs: sameAs(formData.password) },
-}
+}))
 
 const v$ = useValidate(rules, formData)
 
@@ -59,7 +59,7 @@ const submitForm = async () => {
         placeholder="Password"
       />
       <InputText
-        v-model="formData.password"
+        v-model="formData.confirmPassword"
         name="confirm"
         aria-label="Confirm password"
         type="password"
