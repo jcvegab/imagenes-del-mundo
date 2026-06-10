@@ -1,4 +1,20 @@
 <script setup lang="ts">
+import { useHead } from '@unhead/vue'
+
+useHead({
+  title: 'Ingresar | Imágenes del mundo',
+  meta: [
+    {
+      name: 'description',
+      content: 'Inicia sesión para guardar tus imágenes favoritas y personalizar tu experiencia.',
+    },
+    {
+      property: 'og:title',
+      content: 'Ingresar | Imágenes del mundo',
+    },
+  ],
+})
+
 import useValidate from '@vuelidate/core'
 import { required, sameAs, minLength } from '@vuelidate/validators'
 import { reactive, computed } from 'vue'

@@ -1,5 +1,21 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
+import { useHead } from '@unhead/vue'
+
+useHead({
+  title: 'Inicio | Imágenes del mundo',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Busca y explora increíbles imágenes del mundo. Descubre nuevas perspectivas a través de nuestra galería visual.',
+    },
+    {
+      property: 'og:title',
+      content: 'Inicio | Imágenes del mundo',
+    },
+  ],
+})
 
 import { useDebouncedRef } from '@/composable/useDebouncedRef'
 
