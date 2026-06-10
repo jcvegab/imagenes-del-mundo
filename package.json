@@ -1,6 +1,24 @@
 {
   "name": "imagenes-del-mundo",
   "version": "0.0.0",
+  "description": "Aplicación web interactiva para buscar y explorar increíbles imágenes del mundo, desarrollada con Vue 3 y Vite.",
+  "keywords": [
+    "vue",
+    "vue3",
+    "vite",
+    "galería",
+    "imágenes",
+    "buscador",
+    "spa",
+    "frontend"
+  ],
+  "author": "Joseph Vega <admin@jcvegab.dev>",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcvegab/imagenes-del-mundo.git"
+  },
+  "homepage": "https://imagenes-del-mundo.jcvegab.dev",
   "private": true,
   "type": "module",
   "engines": {
