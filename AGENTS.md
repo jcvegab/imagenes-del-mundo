@@ -34,4 +34,5 @@
 
 ## Current Config Gotchas
 
-- README mentions Husky/lint-staged, but this repo currently has no `.husky/` directory or lint-staged config; do not assume commit hooks are active.
+- Husky pre-commit is active: `.husky/pre-commit` runs `npx lint-staged`.
+- `.lintstagedrc.json` runs `oxlint --fix`, `eslint --fix`, and `prettier --write` for JS/TS/Vue files; JSON/MD/HTML/CSS files get `prettier --write`.
