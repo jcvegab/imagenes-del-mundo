@@ -106,6 +106,7 @@ El proyecto usa Husky y lint-staged para validar cambios antes de commit.
 ## Estructura
 
 ```txt
+docs/          Documentacion tecnica del repositorio
 src/
   components/   Componentes reutilizables
   composable/   Composables de Vue
@@ -125,6 +126,14 @@ https://imagenes-del-mundo.jcvegab.dev
 ```
 
 Para produccion, configura las variables `VITE_GCSE_API_KEY` y `VITE_GCSE_CX` en el proveedor de hosting antes de ejecutar el build.
+
+## Documentacion
+
+- [`docs/technical-debt.md`](docs/technical-debt.md): TODOs, seguimiento y deuda tecnica.
+
+## Analisis Local De Codigo
+
+Este repositorio usa una herramienta local de analisis de codigo para exploracion estructural. No documentar nombres de indice, rutas locales ni detalles especificos de maquina.
 
 ## Contribucion
 
