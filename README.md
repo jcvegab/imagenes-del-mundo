@@ -1,54 +1,136 @@
-# imagenes-del-mundo
+# Imagenes del mundo
 
-This template should help get you started developing with Vue 3 in Vite.
+Aplicacion web interactiva para buscar y explorar imagenes del mundo. Usa Vue 3, Vite y Google Custom Search para mostrar una galeria visual con busqueda en tiempo real.
 
-## Recommended IDE Setup
+## Stack
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Vue 3
+- Vite
+- TypeScript
+- Vue Router
+- Pinia
+- PrimeVue
+- Vuelidate
+- Vitest
+- ESLint, Oxlint y Prettier
 
-## Recommended Browser Setup
+## Requisitos
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Node.js `>=22.12.0`
+- npm
+- API key de Google Custom Search
+- Search engine ID de Google Custom Search
 
-## Type Support for `.vue` Imports in TS
+## Variables de Entorno
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+Crea un archivo `.env` desde `.env.example`:
 
-## Customize configuration
+```sh
+cp .env.example .env
+```
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+Variables requeridas:
 
-## Project Setup
+```sh
+VITE_GCSE_API_KEY=your_google_custom_search_api_key
+VITE_GCSE_CX=your_google_custom_search_engine_id
+```
+
+`VITE_GCSE_API_KEY` es la API key de Google Custom Search.
+`VITE_GCSE_CX` es el identificador del motor de busqueda configurado para imagenes.
+
+## Instalacion
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+## Desarrollo
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+## Build
 
 ```sh
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+El build ejecuta type-check y genera la version de produccion con Vite.
+
+## Preview
+
+```sh
+npm run preview
+```
+
+## Tests
+
+Ejecutar pruebas unitarias:
 
 ```sh
 npm run test:unit
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+Ejecutar cobertura:
+
+```sh
+npm run test:coverage
+```
+
+Las pruebas viven junto al codigo en carpetas `__tests__`.
+
+## Calidad de Codigo
+
+Ejecutar linters:
 
 ```sh
 npm run lint
 ```
+
+Formatear codigo fuente:
+
+```sh
+npm run format
+```
+
+El proyecto usa Husky y lint-staged para validar cambios antes de commit.
+
+## Rutas
+
+- `/`: busqueda y galeria de imagenes.
+- `/login`: formulario con validacion de usuario, email y password.
+- `/about`: informacion del proyecto.
+
+## Estructura
+
+```txt
+src/
+  components/   Componentes reutilizables
+  composable/   Composables de Vue
+  constants/    Constantes, rutas y variables
+  router/       Configuracion de Vue Router
+  templates/    Layouts base
+  types/        Tipos TypeScript
+  views/        Paginas de la aplicacion
+```
+
+## Despliegue
+
+Homepage configurada:
+
+```txt
+https://imagenes-del-mundo.jcvegab.dev
+```
+
+Para produccion, configura las variables `VITE_GCSE_API_KEY` y `VITE_GCSE_CX` en el proveedor de hosting antes de ejecutar el build.
+
+## Contribucion
+
+1. Crea una rama desde la rama principal.
+2. Instala dependencias con `npm install`.
+3. Configura `.env` desde `.env.example`.
+4. Ejecuta `npm run lint`.
+5. Ejecuta `npm run test:unit`.
+6. Ejecuta `npm run build` antes de abrir un PR.
