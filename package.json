@@ -50,19 +50,19 @@
     "vue-router": "^5.2.0"
   },
   "devDependencies": {
-    "@tsconfig/node24": "^24.0.4",
+    "@tsconfig/node24": "^24.0.5",
     "@types/jsdom": "^28.0.3",
     "@types/node": "^24.13.3",
     "@vitejs/plugin-vue": "^6.0.8",
     "@vitejs/plugin-vue-jsx": "^5.1.6",
-    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.11",
     "@vitest/eslint-plugin": "^1.6.27",
     "@vue/eslint-config-typescript": "^14.9.0",
     "@vue/test-utils": "^2.4.11",
     "@vue/tsconfig": "^0.9.1",
     "eslint": "^10.8.1",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-oxlint": "~1.77.0",
+    "eslint-plugin-oxlint": "~1.78.0",
     "eslint-plugin-vue": "~10.10.0",
     "husky": "^9.1.7",
     "jiti": "^2.7.0",
@@ -75,6 +75,6 @@
     "vite-plugin-sitemap": "^0.8.2",
     "vite-plugin-vue-devtools": "^8.2.1",
     "vitest": "^4.1.8",
-    "vue-tsc": "^3.3.9"
+    "vue-tsc": "^3.3.11"
   }
 }
