@@ -40,7 +40,7 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
-    "@primeuix/themes": "^2.0.3",
+    "@primeuix/themes": "^3.0.1",
     "@unhead/vue": "^3.4.3",
     "@vue/devtools-api": "^8.2.1",
     "@vuelidate/core": "^2.0.3",
